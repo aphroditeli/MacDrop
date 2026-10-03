@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0a84ff">
+<title>HarmonyDrop</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <div class="logo">📤 HarmonyDrop</div>
+  <div id="connState" class="conn ok">已连接 · <span id="macName">Mac</span></div>
+</header>
+
+<main id="main" hidden>
+  <nav class="tabs">
+    <button class="tab active" data-tab="upload">上传</button>
+    <button class="tab" data-tab="browse">浏览</button>
+    <button class="tab" data-tab="clipboard">剪贴板</button>
+  </nav>
+
+  <!-- 上传 -->
+  <section id="tab-upload" class="panel active">
+    <div class="drop" id="dropZone">
+      <div class="drop-icon">📎</div>
+      <p>点这里选择照片 / 视频 / 文件<br>发送到 Mac</p>
+      <input type="file" id="fileInput" multiple hidden>
+    </div>
+    <div id="uploadList" class="upload-list"></div>
+  </section>
+
+  <!-- 浏览 -->
+  <section id="tab-browse" class="panel">
+    <div class="crumbs" id="crumbs"></div>
+    <div id="browser" class="browser"></div>
+    <div class="loading" id="browseLoading" hidden>加载中…</div>
+  </section>
+
+  <!-- 剪贴板 -->
+  <section id="tab-clipboard" class="panel">
+    <h3>发送到 Mac 剪贴板</h3>
+    <textarea id="clipSend" placeholder="输入文字或链接，Mac 上直接 ⌘V 粘贴"></textarea>
+    <button class="primary" id="clipSendBtn">发送到 Mac</button>
+    <h3>Mac 剪贴板内容 <button class="ghost" id="clipRefresh">刷新</button></h3>
+    <div class="clip-box" id="clipMac">点“刷新”拉取</div>
+    <button class="ghost" id="clipCopy">复制 Mac 剪贴板内容</button>
+  </section>
+</main>
+
+<div id="pairScreen" class="pair-screen">
+  <h2>🔗 配对</h2>
+  <p>请输入 Mac 上 HarmonyDrop 显示的 6 位配对码</p>
+  <input id="pairInput" inputmode="numeric" maxlength="6" placeholder="000000" autocomplete="off">
+  <button class="primary" id="pairBtn">连接</button>
+  <p class="err" id="pairErr" hidden></p>
+</div>
+
+<div id="toast" hidden></div>
+<script src="/app.js"></script>
+</body>
+</html>
